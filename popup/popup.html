@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>随心记</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1 class="logo">📝 随心记</h1>
+        <button id="btn-new-note" class="btn-primary" title="新建笔记">+ 新笔记</button>
+      </div>
+      
+      <!-- 搜索框 -->
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="搜索笔记..." />
+      </div>
+      
+      <!-- 空间列表 -->
+      <div class="spaces-section">
+        <div class="section-header">
+          <span>📁 空间</span>
+          <button id="btn-new-space" class="btn-icon" title="新建空间">+</button>
+        </div>
+        <div id="spaces-tree" class="spaces-tree">
+          <!-- 动态渲染空间树 -->
+        </div>
+      </div>
+      
+      <!-- 标签筛选 -->
+      <div class="tags-section">
+        <div class="section-header">
+          <span>🏷️ 标签</span>
+        </div>
+        <div id="tags-list" class="tags-list">
+          <!-- 动态渲染标签 -->
+        </div>
+      </div>
+    </aside>
+    
+    <!-- 主内容区 -->
+    <main class="main-content">
+      <!-- 笔记列表视图 -->
+      <div id="notes-list-view" class="notes-list-view">
+        <div class="notes-list-header">
+          <h2 id="current-space-name">全部笔记</h2>
+          <span id="notes-count" class="notes-count">0 篇</span>
+        </div>
+        <div id="notes-list" class="notes-list">
+          <!-- 动态渲染笔记列表 -->
+        </div>
+      </div>
+      
+      <!-- 笔记编辑器视图 -->
+      <div id="note-editor-view" class="note-editor-view hidden">
+        <div class="editor-header">
+          <button id="btn-back" class="btn-icon">← 返回</button>
+          <div class="editor-actions">
+            <button id="btn-delete-note" class="btn-danger" title="删除笔记">🗑️</button>
+            <button id="btn-duplicate-note" class="btn-icon" title="创建副本">📋</button>
+          </div>
+        </div>
+        
+        <!-- 笔记标题 -->
+        <input type="text" id="note-title" class="note-title" placeholder="无标题笔记" />
+        
+        <!-- 标签管理 -->
+        <div class="note-tags">
+          <div id="note-tags-list" class="note-tags-list"></div>
+          <button id="btn-add-tag" class="btn-add-tag">+ 标签</button>
+        </div>
+        
+        <!-- 富文本编辑器工具栏 -->
+        <div class="editor-toolbar">
+          <button class="toolbar-btn" data-command="bold" title="加粗"><b>B</b></button>
+          <button class="toolbar-btn" data-command="italic" title="斜体"><i>I</i></button>
+          <button class="toolbar-btn" data-command="insertUnorderedList" title="无序列表">•</button>
+          <button class="toolbar-btn" data-command="insertOrderedList" title="有序列表">1.</button>
+          <button class="toolbar-btn" data-command="createLink" title="插入链接">🔗</button>
+          <button class="toolbar-btn" id="btn-insert-image" title="插入图片">🖼️</button>
+          <button class="toolbar-btn" id="btn-paste-image" title="粘贴图片">📷</button>
+        </div>
+        
+        <!-- 编辑器内容 -->
+        <div id="note-editor" class="note-editor" contenteditable="true" placeholder="开始记录..."></div>
+        
+        <!-- 元信息 -->
+        <div class="note-meta">
+          <span id="note-updated-at"></span>
+          <span id="note-word-count">0 字</span>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <!-- 新建空间弹窗 -->
+  <div id="modal-new-space" class="modal hidden">
+    <div class="modal-content">
+      <h3>新建空间</h3>
+      <input type="text" id="new-space-name" placeholder="空间名称" />
+      <div id="space-name-error" class="error-msg hidden">同名空间已存在</div>
+      <select id="new-space-parent">
+        <option value="">根级别</option>
+      </select>
+      <div class="modal-actions">
+        <button id="btn-cancel-space" class="btn-secondary">取消</button>
+        <button id="btn-confirm-space" class="btn-primary">创建</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 新建标签弹窗 -->
+  <div id="modal-new-tag" class="modal hidden">
+    <div class="modal-content">
+      <h3>添加标签</h3>
+      <input type="text" id="new-tag-name" placeholder="标签名称" />
+      <div id="tags-suggestions" class="tags-suggestions"></div>
+      <div class="modal-actions">
+        <button id="btn-cancel-tag" class="btn-secondary">取消</button>
+        <button id="btn-confirm-tag" class="btn-primary">添加</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 确认删除弹窗 -->
+  <div id="modal-confirm-delete" class="modal hidden">
+    <div class="modal-content">
+      <h3>确认删除</h3>
+      <p id="delete-message">确定要删除这篇笔记吗？</p>
+      <div class="modal-actions">
+        <button id="btn-cancel-delete" class="btn-secondary">取消</button>
+        <button id="btn-confirm-delete" class="btn-danger">删除</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>

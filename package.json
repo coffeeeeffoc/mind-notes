@@ -1,0 +1,13 @@
+{
+  "name": "mind-notes",
+  "version": "1.0.0",
+  "description": "随心记 - 轻量级浏览器笔记插件",
+  "scripts": {
+    "dev": "echo 'Open chrome://extensions/ and load unpacked from ./dist'",
+    "build": "echo 'For production, zip the ./dist folder'",
+    "test": "echo 'No tests configured yet'"
+  },
+  "keywords": ["chrome-extension", "notes", "bookmark"],
+  "author": "coffeeeeffoc",
+  "license": "MIT"
+}
