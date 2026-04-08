@@ -1,65 +1,72 @@
 # 随心记 (mind-notes)
 
-> 轻量级浏览器笔记插件，随时记录想法
+轻量级浏览器笔记插件，随时记录想法。
 
 ## 功能特性
 
-- **📝 多种内容格式** - 支持文字、富文本、图片粘贴上传、链接插入
-- **📁 空间管理** - 树状文件夹结构，支持多层嵌套
-- **🏷️ 标签分类** - 为笔记添加彩色标签
-- **💾 本地存储** - IndexedDB 本地存储，即时自动保存
-- **🔍 快速搜索** - 按标题和内容搜索笔记
-- **📌 置顶笔记** - 重要笔记可置顶显示
-- **⚡ 快捷键支持** - `Ctrl/Cmd + Shift + M` 快速记笔记
+- 📝 支持文字、富文本、链接、图片粘贴上传
+- 🏷️ 标签分类
+- 📁 空间（文件夹）管理，支持多层嵌套
+- 💾 本地存储，即时保存，随时关闭不丢失
+- 🎨 简洁优雅的界面
 
-## 安装使用
+## 安装
 
-### Chrome / Edge
-
-1. 打开 `chrome://extensions/` 或 `edge://extensions/`
-2. 开启「开发者模式」
-3. 点击「加载已解压的扩展程序」
-4. 选择本项目目录
-5. 点击浏览器工具栏的插件图标即可使用
+1. 下载/克隆本项目
+2. 打开 Chrome/Edge，访问 `chrome://extensions/`
+3. 开启「开发者模式」
+4. 点击「加载已解压的扩展程序」
+5. 选择本项目的 `mind-notes` 目录
 
 ## 项目结构
 
 ```
 mind-notes/
-├── manifest.json          # 插件配置 (Manifest V3)
-├── package.json
-├── README.md
-├── popup/                 # 弹窗界面
+├── manifest.json          # Chrome 插件配置
+├── package.json           # Node.js 项目配置
+├── popup/                 # 弹窗 UI
 │   ├── popup.html
 │   ├── popup.css
 │   └── popup.js
-├── background/           # 后台服务脚本
+├── background/            # 后台服务
 │   └── background.js
-├── content/              # 内容脚本
+├── content/               # 内容脚本
 │   └── content.js
-├── lib/                  # 核心库
-│   ├── idb.js           # IndexedDB 存储层
-│   ├── spaces.js        # 空间（文件夹）管理
-│   ├── notes.js         # 笔记 CRUD
-│   ├── tags.js          # 标签管理
-│   ├── images.js        # 图片存储
-│   └── utils.js         # 工具函数
-└── styles/               # 样式文件
-    └── content.css
+├── lib/                   # 核心库
+│   ├── idb.js            # IndexedDB 存储层
+│   ├── utils.js          # 工具函数
+│   ├── spaces.js         # 空间管理
+│   ├── notes.js          # 笔记管理
+│   ├── tags.js           # 标签管理
+│   └── images.js         # 图片存储
+└── README.md
 ```
 
 ## 技术栈
 
-- **Manifest V3** - 最新 Chrome 扩展规范
-- **IndexedDB** - 本地大文件存储
-- **chrome.storage** - 轻量配置存储
-- **原生 JavaScript** - 无框架依赖，轻量快速
+- Chrome Extension Manifest V3
+- 原生 JavaScript（无框架依赖）
+- IndexedDB（存储笔记和图片）
+- chrome.storage（存储配置和元数据）
 
-## 开发说明
+## 使用方法
+
+1. 点击浏览器工具栏的插件图标打开随手记
+2. 按 `+ 新笔记` 创建新笔记
+3. 在编辑器中输入内容，支持富文本格式
+4. 点击 `📁 空间` 创建文件夹来组织笔记
+5. 使用 `+ 标签` 为笔记添加分类标签
+
+## 开发
 
 ```bash
-# 克隆项目后直接加载到 Chrome
-# 无需构建步骤，直接加载目录即可
+# 查看文件变更
+git status
+
+# 提交变更
+git add .
+git commit -m "your message"
+git push
 ```
 
 ## License
